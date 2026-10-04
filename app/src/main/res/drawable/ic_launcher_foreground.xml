@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Material Design "wifi" glyph, scaled into the adaptive-icon safe zone -->
+    <group
+        android:scaleX="2.2"
+        android:scaleY="2.2"
+        android:translateX="27.6"
+        android:translateY="27.6">
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M12,21 L23.64,7 C20.32,4.06 16.22,2.5 12,2.5 C7.78,2.5 3.68,4.06 0.36,7 L12,21 Z" />
+    </group>
+</vector>

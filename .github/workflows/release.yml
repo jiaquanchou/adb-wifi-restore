@@ -1,0 +1,64 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      # Optional stable signing. Without these secrets the APK falls back to a
+      # debug signature (still perfectly installable; see SECURITY.md).
+      - name: Prepare release keystore (optional)
+        env:
+          RELEASE_KEYSTORE_B64: ${{ secrets.RELEASE_KEYSTORE_B64 }}
+          RELEASE_STORE_PASSWORD: ${{ secrets.RELEASE_STORE_PASSWORD }}
+          RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
+          RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
+        run: |
+          if [ -n "$RELEASE_KEYSTORE_B64" ]; then
+            mkdir -p keystore
+            echo "$RELEASE_KEYSTORE_B64" | base64 -d > keystore/release.keystore
+            {
+              echo "RELEASE_STORE_FILE=$GITHUB_WORKSPACE/keystore/release.keystore"
+              echo "RELEASE_STORE_PASSWORD=$RELEASE_STORE_PASSWORD"
+              echo "RELEASE_KEY_ALIAS=$RELEASE_KEY_ALIAS"
+              echo "RELEASE_KEY_PASSWORD=$RELEASE_KEY_PASSWORD"
+            } >> "$GITHUB_ENV"
+          else
+            echo "::notice::RELEASE_KEYSTORE_B64 not set - the APK will be debug-signed."
+          fi
+
+      - name: Build release APK
+        run: ./gradlew --no-daemon assembleRelease
+
+      - name: Collect artifacts
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          cp app/build/outputs/apk/release/app-release.apk "adb-wifi-restore-$VERSION.apk"
+          sha256sum "adb-wifi-restore-$VERSION.apk" > "adb-wifi-restore-$VERSION.apk.sha256"
+          ls -lh adb-wifi-restore-*
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            adb-wifi-restore-*.apk
+            adb-wifi-restore-*.apk.sha256
+          generate_release_notes: true

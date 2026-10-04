@@ -1,0 +1,10 @@
+// Top-level build file.
+//
+// This project intentionally ships with ZERO runtime dependencies (no androidx,
+// no material) so that:
+//   * the APK stays tiny (~100 KB),
+//   * scripts/build-standalone.sh can produce the very same APK with nothing
+//     but a JDK and the Android build-tools (no Gradle, no Maven downloads).
+plugins {
+    id 'com.android.application' version '8.5.2' apply false
+}

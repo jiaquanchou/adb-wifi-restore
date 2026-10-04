@@ -1,0 +1,25 @@
+name: Feature request
+description: Idea for making the headless life easier
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / use case
+      description: What are you trying to achieve with your headless device?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+  - type: checkboxes
+    id: constraint
+    attributes:
+      label: Constraints
+      description: This project keeps zero runtime dependencies and a tiny APK — proposals should respect that or argue convincingly against it.
+      options:
+        - label: My idea can be implemented with zero new dependencies
+          required: false

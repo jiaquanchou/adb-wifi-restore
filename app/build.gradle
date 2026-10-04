@@ -1,0 +1,57 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'dev.adbwifi.restore'
+    compileSdk 34
+    buildToolsVersion '35.0.0'
+
+    defaultConfig {
+        applicationId "dev.adbwifi.restore"
+        minSdk 30          // wireless debugging (adb_wifi_enabled) exists since Android 11
+        targetSdk 31       // deliberate: keeps runtime behaviour identical on every ROM we
+                           // field-tested (Android 12 / MIUI 13); sideloaded APK, no Play targetSdk floor
+        versionCode 1
+        versionName "1.0.0"
+    }
+
+    signingConfigs {
+        release {
+            // Filled from environment by CI. When the variables are absent the
+            // release build falls back to the debug key below, so
+            // `./gradlew assembleRelease` always produces an installable APK.
+            if (System.getenv("RELEASE_STORE_FILE") != null) {
+                storeFile file(System.getenv("RELEASE_STORE_FILE"))
+                storePassword System.getenv("RELEASE_STORE_PASSWORD")
+                keyAlias System.getenv("RELEASE_KEY_ALIAS")
+                keyPassword System.getenv("RELEASE_KEY_PASSWORD")
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig System.getenv("RELEASE_STORE_FILE") != null
+                    ? signingConfigs.release
+                    : signingConfigs.debug
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    lint {
+        lintConfig file('lint.xml')
+        abortOnError true
+    }
+}
+
+// Test-scope only: the runtime APK keeps its zero-dependency guarantee
+// (the standalone build chain never compiles tests).
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+}

@@ -1,0 +1,52 @@
+name: Bug report
+description: Something does not restore / report as expected
+labels: [bug]
+body:
+  - type: input
+    id: device
+    attributes:
+      label: Device model
+      placeholder: e.g. Redmi K30 5G
+    validations:
+      required: true
+  - type: input
+    id: android
+    attributes:
+      label: Android version / ROM
+      placeholder: e.g. Android 12 / MIUI 13
+    validations:
+      required: true
+  - type: dropdown
+    id: source
+    attributes:
+      label: APK source
+      options:
+        - GitHub Release APK
+        - Built with Gradle myself
+        - Built with scripts/build-standalone.sh
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. reboot the phone
+        2. curl http://<phone>:18055/
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: status
+    attributes:
+      label: Reporter output
+      description: Output of `curl http://<device>:18055/` (port number can be masked)
+      render: json
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: logcat
+      description: '`adb logcat -s AdbRestoreEngine AdbRestoreHttp AdbWifiRestore AdbRestoreService` after the failure'
+      render: shell

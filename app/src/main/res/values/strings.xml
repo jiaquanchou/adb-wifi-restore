@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ADB WiFi Restore</string>
+    <string name="status_summary">Keeps wireless debugging alive across reboots on Android 11+ and reports its random port over HTTP — built for headless phones.</string>
+
+    <string name="card_permission_title">Permission</string>
+    <string name="permission_ok">WRITE_SECURE_SETTINGS granted ✓</string>
+    <string name="permission_missing">WRITE_SECURE_SETTINGS not granted ✗ — run these once from your computer:</string>
+
+    <string name="card_adb_title">Wireless debugging</string>
+    <string name="adb_on">adb_wifi_enabled = 1 · ON</string>
+    <string name="adb_off">adb_wifi_enabled = 0 · OFF (restoring…)</string>
+    <string name="adb_unknown">adb_wifi_enabled = ? · unknown</string>
+    <string name="wifi_ok">Wi-Fi connected</string>
+    <string name="wifi_waiting">Waiting for Wi-Fi…</string>
+    <string name="btn_restore_now">Restore now</string>
+
+    <string name="card_connect_title">Connect from your computer</string>
+    <string name="connect_waiting">Waiting for the dynamic port (NSD discovery)…</string>
+    <string name="connect_cmd_fmt">adb connect %1$s:%2$d</string>
+    <string name="curl_cmd_fmt">curl http://%1$s:%2$d/</string>
+
+    <string name="card_ips_title">Device IPv4 addresses</string>
+    <string name="ips_none">No IPv4 address yet</string>
+
+    <string name="card_http_title">HTTP status reporter</string>
+    <string name="http_running">Listening on 0.0.0.0:%1$d</string>
+    <string name="http_stopped">Not running</string>
+
+    <string name="btn_copy">Copy</string>
+    <string name="toast_copied">Copied ✓</string>
+    <string name="auto_closed_toast">Page closed after idle — the background service keeps running.</string>
+    <string name="card_detail_title">Status JSON</string>
+</resources>

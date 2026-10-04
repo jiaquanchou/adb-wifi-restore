@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ADB WiFi Restore</string>
+    <string name="status_summary">Android 11+ 无头手机好帮手：重启后自动恢复「无线调试」，并通过 HTTP 上报系统随机分配的端口。</string>
+
+    <string name="card_permission_title">权限状态</string>
+    <string name="permission_ok">WRITE_SECURE_SETTINGS 已授权 ✓</string>
+    <string name="permission_missing">WRITE_SECURE_SETTINGS 未授权 ✗ —— 请在电脑上执行一次以下命令：</string>
+
+    <string name="card_adb_title">无线调试</string>
+    <string name="adb_on">adb_wifi_enabled = 1 · 已开启</string>
+    <string name="adb_off">adb_wifi_enabled = 0 · 已关闭（恢复中…）</string>
+    <string name="adb_unknown">adb_wifi_enabled = ? · 未知</string>
+    <string name="wifi_ok">Wi-Fi 已连接</string>
+    <string name="wifi_waiting">等待 Wi-Fi 接入…</string>
+    <string name="btn_restore_now">立即恢复</string>
+
+    <string name="card_connect_title">电脑连接命令</string>
+    <string name="connect_waiting">等待 NSD 捕获动态端口…</string>
+    <string name="connect_cmd_fmt">adb connect %1$s:%2$d</string>
+    <string name="curl_cmd_fmt">curl http://%1$s:%2$d/</string>
+
+    <string name="card_ips_title">本机 IPv4 地址</string>
+    <string name="ips_none">暂无 IPv4 地址</string>
+
+    <string name="card_http_title">HTTP 状态上报服务</string>
+    <string name="http_running">监听中 0.0.0.0:%1$d</string>
+    <string name="http_stopped">未运行</string>
+
+    <string name="btn_copy">复制</string>
+    <string name="toast_copied">已复制 ✓</string>
+    <string name="auto_closed_toast">页面已自动关闭，后台服务仍在运行</string>
+    <string name="card_detail_title">状态 JSON</string>
+</resources>

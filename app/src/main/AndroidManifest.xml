@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- WRITE_SECURE_SETTINGS is a "development" permission: it is granted ONCE
+         from a computer via `adb shell pm grant` and then persists until the app
+         is uninstalled. That single grant is what allows this app to switch the
+         system wireless-debugging setting back on after every reboot. -->
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
+        android:theme="@style/AppTheme"
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/full_backup_content"
+        android:supportsRtl="true">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- LOCKED_BOOT_COMPLETED (directBootAware) fires before first unlock,
+             so the engine can already flip the setting on; the adbd TLS keys live
+             in credential-encrypted storage and only bind a port after the first
+             unlock (see README "Direct Boot"). -->
+        <receiver
+            android:name=".BootReceiver"
+            android:exported="true"
+            android:directBootAware="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+                <!-- Explicit trigger, e.g. from a Termux:Boot script:
+                     am broadcast -a dev.adbwifi.restore.TRIGGER -->
+                <action android:name="dev.adbwifi.restore.TRIGGER" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".RestoreService"
+            android:exported="false" />
+    </application>
+</manifest>

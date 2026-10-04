@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-label="adb-wifi-restore banner">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B1220"/>
+      <stop offset="1" stop-color="#111F3A"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4C8DFF"/>
+      <stop offset="1" stop-color="#8FC0FF"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="300" rx="16" fill="url(#bg)"/>
+  <rect x="0.5" y="0.5" width="1199" height="299" rx="15.5" fill="none" stroke="#22345A"/>
+
+  <!-- wifi glyph -->
+  <g transform="translate(175,160)">
+    <circle cx="0" cy="60" r="13" fill="url(#accent)"/>
+    <g fill="none" stroke="url(#accent)" stroke-width="13" stroke-linecap="round">
+      <path d="M -32 28 A 45 45 0 0 1 32 28"/>
+      <path d="M -60 0 A 85 85 0 0 1 60 0"/>
+      <path d="M -88 -28 A 125 125 0 0 1 88 -28"/>
+    </g>
+  </g>
+
+  <!-- wordmark (textLength pins the layout across renderers/fonts) -->
+  <text x="320" y="136" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="60" font-weight="bold" fill="#F2F6FF" textLength="780" lengthAdjust="spacingAndGlyphs">adb-wifi-restore</text>
+  <text x="322" y="190" font-family="Helvetica, Arial, sans-serif" font-size="28" fill="#9FB3D1" textLength="775" lengthAdjust="spacingAndGlyphs">Headless Wireless ADB Auto-Restorer for Android 11+</text>
+
+  <!-- chips -->
+  <g font-family="Helvetica, Arial, sans-serif" font-size="18">
+    <rect x="322" y="220" width="140" height="36" rx="18" fill="#16294C" stroke="#2C4B85"/>
+    <text x="392" y="244" text-anchor="middle" fill="#8FC0FF">Android 11+</text>
+    <rect x="478" y="220" width="140" height="36" rx="18" fill="#16294C" stroke="#2C4B85"/>
+    <text x="548" y="244" text-anchor="middle" fill="#8FC0FF">zero deps</text>
+    <rect x="634" y="220" width="150" height="36" rx="18" fill="#16294C" stroke="#2C4B85"/>
+    <text x="709" y="244" text-anchor="middle" fill="#8FC0FF">~33 KB APK</text>
+    <rect x="800" y="220" width="140" height="36" rx="18" fill="#16294C" stroke="#2C4B85"/>
+    <text x="870" y="244" text-anchor="middle" fill="#8FC0FF">Apache-2.0</text>
+  </g>
+</svg>

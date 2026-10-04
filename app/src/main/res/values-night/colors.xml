@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="app_bg">#101214</color>
+    <color name="card_bg">#1B1E23</color>
+    <color name="card_stroke">#262B33</color>
+    <color name="text_primary">#E6E9EE</color>
+    <color name="text_secondary">#9AA4B0</color>
+    <color name="mono_bg">#14171B</color>
+    <color name="mono_stroke">#2A2F36</color>
+    <color name="accent">#8AB4F8</color>
+    <color name="ok">#81C995</color>
+    <color name="bad">#F28B82</color>
+    <color name="ic_launcher_background">#1A73E8</color>
+</resources>

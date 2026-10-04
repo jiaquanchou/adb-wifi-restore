@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <!-- WRITE_SECURE_SETTINGS is flagged because it is normally system-only.
+         Being a "development" permission it can be granted through adb, and that
+         adb grant is the entire point of this tool. -->
+    <issue id="ProtectedPermissions" severity="ignore" />
+
+    <!-- This app is sideload-only by design and never ships to Google Play.
+         targetSdk 31 is pinned to keep runtime behaviour identical to the
+         ROMs the self-heal flow was field-tested on (Android 12 / MIUI 13);
+         raising it would trade proven behaviour for a policy checkbox. -->
+    <issue id="ExpiredTargetSdkVersion" severity="ignore" />
+</lint>
