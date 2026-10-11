@@ -209,6 +209,8 @@ IP addresses.
 
 ## Compatibility
 
+Detailed device/capability matrix (Chinese): [docs/兼容性与测试矩阵.md](docs/兼容性与测试矩阵.md).
+
 | Device | Android | ROM | Status |
 |---|---|---|---|
 | Redmi K30 5G | 12 | MIUI 13 | ✅ full loop verified: grant → reboot → auto-restore → port via NSD → `adb connect` over Tailscale |
